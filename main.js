@@ -1,11 +1,15 @@
 const express = require("express");
-const { connectToDB } = require("./connection");
+const {mongoose} = require("mongoose")
 require("dotenv").config();
 const app = express();
 
 const port = process.env.PORT || 8082;
 app.use(express.json());
-// connectToDB();
+
+mongoose.connect(
+    `${process.env.MONGODB_BASE_URL}/otp_user_verify_app`,
+  );
+
 
 app.use("/", require("./routes/router"));
 
